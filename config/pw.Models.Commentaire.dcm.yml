@@ -1,0 +1,20 @@
+#pw.Models.Commentaire.dcm.yml
+
+pw\Models\Commentaire:
+  type: entity
+  table: commentaire
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+
+  fields:
+    contenu:
+      type: string
+      column: contenu
+      nullable: false
+    idArticle:
+      type: integer
+      column: idarticle

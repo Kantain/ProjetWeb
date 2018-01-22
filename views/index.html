@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Le Blog de Choone</title>
+	<link rel="stylesheet" type="text/css" href="{{app.request.basepath}}/style/style.css">
+</head>
+<body>
+	<header>
+		Le Blog de Choone
+	</header>
+	<nav>
+		<ul>
+			<li><a href="{{app.request.basepath}}/">Accueil</a></li>
+			<li><a href="{{app.request.basepath}}/contact">Contact</a></li>
+			<li><a href="{{app.request.basepath}}/articles">Ecrire un article</a></li>
+		</ul>
+	</nav>
+	<main>
+		{% for article in articles %}
+			<div class="article">
+				<a id="supprimer" href="{{app.request.basepath}}/supprimer/{{article.getId}}">X</a>
+				<div id="nom">{{article.getNom()}}</div>
+				<div id="date">{{article.getDate}}</div>
+				<div id="description">{{article.getDescription()}}</div>
+				{% if article.getImages != NULL %}
+				<img id="image" src="{{app.request.basepath}}/images/{{article.getNom}}.PNG">
+				{% endif %}
+				<div class="commentaire">
+				{% for com in commentaires %}
+				{% if com.getIdArticle==article.getId %}
+					<div class="textCommentaire"><a id="supprimerCom" href="{{app.request.basepath}}/supprimerCom/{{com.getId}}">X</a>{{com.getContenu}}
+					</div>
+				{% endif %}
+				{% endfor %}
+					<div id="ajoutCommentaire">
+						<form action="{{ app.request.basepath }}/ajoutCommentaire" method="post">
+							<input type="text" id="textCom" name="contenu" placeholder="Ajouter un commentaire..." size="102" maxlength="100" required>
+							<input type="hidden" name="idArticle" value="{{ article.getId }}">
+							<input type="submit" id="ajoutCom" name="envoyer" value="Envoyer">
+						</form>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</main>
+</body>
+</html>

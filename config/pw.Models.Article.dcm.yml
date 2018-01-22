@@ -1,0 +1,29 @@
+#pw.Models.Article.dcm.yml
+
+pw\Models\Article:
+  type: entity
+  table: article
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+
+  fields:
+    nom:
+      type: string
+      column: nom
+      nullable: false
+    description:
+      type: string
+      column: description
+      nullable: false
+    images:
+      type: string
+      collumn: images
+      nullable: false
+    date:
+      type: string
+      collumn: date
+      nullable: false
